@@ -7,6 +7,19 @@
 # General application configuration
 import Config
 
+config :family_hub, :scopes,
+  user: [
+    default: true,
+    module: FamilyHub.Accounts.Scope,
+    assign_key: :current_scope,
+    access_path: [:user, :id],
+    schema_key: :user_id,
+    schema_type: :id,
+    schema_table: :users,
+    test_data_fixture: FamilyHub.AccountsFixtures,
+    test_setup_helper: :register_and_log_in_user
+  ]
+
 config :family_hub,
   ecto_repos: [FamilyHub.Repo],
   generators: [timestamp_type: :utc_datetime]
